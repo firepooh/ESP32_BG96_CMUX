@@ -2,7 +2,7 @@
 ESP32 BG96 CMUX IDF Example
 
 # setup
-1. 참고 esp modem components 
+1. reference source : esp modem components 
 > [https://github.com/espressif/esp-aws-iot](https://components.espressif.com/components/espressif/esp_modem)
 
 2. simple_cmux_example 사용
@@ -14,4 +14,8 @@ ESP32 BG96 CMUX IDF Example
 ```
 CONFIG_EXAMPLE_MODEM_UART_TX_PIN=13
 CONFIG_EXAMPLE_MODEM_UART_RX_PIN=4
+```
+- LG USIM 사용시 APN 설정
+```
+CONFIG_EXAMPLE_MODEM_PPP_APN="m2m-catm1.default.lguplus.co.kr"
 ```
