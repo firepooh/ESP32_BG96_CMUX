@@ -1,43 +1,17 @@
-# esp32_idf_aws
-ESP32 AWS IDF Example
+# esp32_bg96_cmux
+ESP32 BG96 CMUX IDF Example
 
 # setup
-1. 참고 aws iot 예제 
-> https://github.com/espressif/esp-aws-iot
+1. 참고 esp modem components 
+> [https://github.com/espressif/esp-aws-iot](https://components.espressif.com/components/espressif/esp_modem)
 
-2. 사용하는 IDF Version의 examples 폴더에서 아래 명령을 이용하여 copy 한다.
-> git clone -b "release/202210.01-LTS" --recursive https://github.com/espressif/esp-aws-iot
+2. simple_cmux_example 사용
+> [git clone -b "release/202210.01-LTS" --recursive https://github.com/espressif/esp-aws-iot](https://github.com/espressif/esp-protocols/tree/master/components/esp_modem/examples/simple_cmux_client)
 
-3. vscode의 "ESP-IDF: Show Examples Projects" 을 통해 "tls_mutual_auth" 예제를 생성한다.
-
-4. CMakeLists.txt 에서 libraries path을 아래와 같이 수정한다.
-```
-set(EXTRA_COMPONENT_DIRS "$ENV{IDF_PATH}/examples/common_components/protocol_examples_common"
-						 "$ENV{IDF_PATH}/examples/esp-aws-iot/libraries/backoffAlgorithm"
-						 "$ENV{IDF_PATH}/examples/esp-aws-iot/libraries/coreMQTT"
-						 "$ENV{IDF_PATH}/examples/esp-aws-iot/libraries/common/posix_compat")
-```
 
  # sdkconfig.defaults 설정
-- 로그를 시간 베이스로 확인 하기 위한 설정
+- 모뎀 tx/rx uart 설정
 ```
-CONFIG_LWIP_DHCP_GET_NTP_SRV=y
-CONFIG_LOG_TIMESTAMP_SOURCE_SYSTEM=y
+CONFIG_EXAMPLE_MODEM_UART_TX_PIN=13
+CONFIG_EXAMPLE_MODEM_UART_RX_PIN=4
 ```
-- WIFI 설정
-```
-CONFIG_EXAMPLE_WIFI_SSID="TwinsMesh"
-CONFIG_EXAMPLE_WIFI_PASSWORD="01020114473"
-```
-- AWS 설정
-```
-CONFIG_MQTT_CLIENT_IDENTIFIER="test"
-CONFIG_MQTT_BROKER_ENDPOINT="ajwyncrxuu7ba-ats.iot.us-west-2.amazonaws.com"
-```
-
-# 인증서 관련 
-- aws site에서 iot 생성시 다운 받은 인증서를 셋팅 한다.(파일 내용을 copy paste 한다. )
-> ![image](https://github.com/firepooh/ESP32_AWS_IDF/assets/19420294/1948b936-baa8-4021-8ba1-60376299a19e)
-
-c2a877a658beba55b3118342d7b9d1cc254f0aa9918d50d641bca80cc26aaf35-certificate.pem.crt --> client.crt
-c2a877a658beba55b3118342d7b9d1cc254f0aa9918d50d641bca80cc26aaf35-private.pem.key     --> client.key
